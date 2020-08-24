@@ -1,14 +1,35 @@
 """
+AUTHOR: VEYSEL BOYBAY
+STUDENT ID: 301115376
 Program: generator.py
 Generates and displays sentences using simple grammar
 and vocabulary. Words are chosen at random.
 """
 
 import random
-articles = ("A", "THE")
-nouns = ("BOY", "GIRL", "BAT", "BALL",)
-verbs = ("HIT", "SAW", "LIKED")
-prepositions = ("WITH", "BY")
+
+def getWords(file_name):
+    fileobject=open(f"{file_name}","r")
+    contents=fileobject.read()
+    fileobject.close()
+    File=contents.split(",")
+    nouns=()
+    for element in File:
+        nouns+=(element,)
+    return nouns
+
+
+
+nouns=getWords("nouns.txt")
+articles=getWords("articles.txt")
+prepositions=getWords("prepositions.txt")
+verbs=getWords("verbs.txt")
+adjectives=getWords("adjectives.txt")
+conjunctions=getWords("conjunctions.txt")
+    
+def conjunction():
+    """Combine two sentences and returns it"""
+    return sentence()+" "+random.choice(conjunctions)+" "+sentence()
 
 def sentence():
     """Builds and returns a sentence."""
@@ -16,11 +37,11 @@ def sentence():
 
 def nounPhrase():
     """Builds and returns a noun phrase."""
-    return random.choice(articles) + " " + random.choice(nouns)
+    return random.choice(articles) +" "+random.choice(adjectives)+ " " + random.choice(nouns)
 
 def verbPhrase():
     """Builds and returns a verb phrase."""
-    return random.choice(verbs) + " " + nounPhrase() + " " + prepositionalPhrase()
+    return random.choice(verbs) + " " + " "+nounPhrase() + " " + prepositionalPhrase()
 
 def prepositionalPhrase():
     """Builds and returns a prepositional phrase."""
@@ -31,6 +52,6 @@ def main():
     to generate."""
     number = int(input("Enter the number of sentences: "))
     for count in range(number):
-        print(sentence())
+        print(conjunction())
         
 main()
