@@ -27,7 +27,7 @@ verbs=getWords("verbs.txt")
 adjectives=getWords("adjectives.txt")
 conjunctions=getWords("conjunctions.txt")
     
-def conjunction():
+def compoundSentence():
     """Combine two sentences and returns it"""
     return sentence()+" "+random.choice(conjunctions)+" "+sentence()
 
@@ -52,6 +52,6 @@ def main():
     to generate."""
     number = int(input("Enter the number of sentences: "))
     for count in range(number):
-        print(conjunction())
+        print(compoundSentence())
         
 main()
